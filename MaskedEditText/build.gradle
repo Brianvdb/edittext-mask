@@ -61,7 +61,7 @@ install {
                 }
                 pom.withXml {
                     def dependencies = asNode().appendNode('dependencies')
-                    configurations.runtime.getResolvedConfiguration().getFirstLevelModuleDependencies().each {
+                    configurations.getByName("releaseCompileClasspath").getResolvedConfiguration().getFirstLevelModuleDependencies().each {
                         def dependency = dependencies.appendNode('dependency')
                         dependency.appendNode('groupId', it.moduleGroup)
                         dependency.appendNode('artifactId', it.moduleName)
