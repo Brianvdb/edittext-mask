@@ -411,24 +411,8 @@ public class MaskedEditText extends AppCompatEditText implements TextWatcher {
 
     private CharSequence makeMaskedTextWithHint() {
         SpannableStringBuilder ssb = new SpannableStringBuilder();
-        int mtrv;
-        int maskFirstChunkEnd = rawToMask[0];
-        for (int i = 0; i < mask.length(); i++) {
-            mtrv = maskToRaw[i];
-            if (mtrv != -1) {
-                if (mtrv < rawText.length()) {
-                    ssb.append(rawText.charAt(mtrv));
-                } else {
-                    ssb.append(getHint().charAt(maskToRaw[i]));
-                }
-            } else {
-                ssb.append(mask.charAt(i));
-            }
-            if ((keepHint && rawText.length() < rawToMask.length && i >= rawToMask[rawText.length()])
-                    || (!keepHint && i >= maskFirstChunkEnd)) {
-                ssb.setSpan(new ForegroundColorSpan(getCurrentHintTextColor()), i, i + 1, 0);
-            }
-        }
+        ssb.append(getHint());
+        ssb.setSpan(new ForegroundColorSpan(getCurrentHintTextColor()), 0, getHint().length(), 0);
         return ssb;
     }
 
