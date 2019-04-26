@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
 
 group='com.github.Brianvdb'
 
@@ -38,4 +37,51 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 artifacts {
     archives javadocJar
     archives sourcesJar
+}
+
+apply plugin: 'com.github.dcendents.android-maven'
+
+install {
+    repositories.mavenInstaller {
+        // This generates POM.xml with proper parameters
+        pom {
+            project {
+                packaging 'aar'
+
+                // Add your description here
+                name "EditText Mask"
+                description "EditText Mask"
+                url "https://bravobit.nl/"
+
+                // Set your license
+                licenses {
+                    license {
+                        name "GNU General Public License v3.0"
+                        url "https://github.com/bravobit/FFmpeg-Android/blob/master/LICENSE"
+                    }
+                }
+                developers {
+                    developer {
+                        id "Bravobit"
+                        name "Bravobit"
+                        email "info@bravobit.nl"
+                    }
+                }
+                scm {
+                    connection "https://github.com/Brianvdb/edittext-mask.git"
+                    developerConnection "https://github.com/Brianvdb/edittext-mask.git"
+                    url "https://github.com/Brianvdb/edittext-mask"
+                }
+                pom.withXml {
+                    def dependencies = asNode().appendNode('dependencies')
+                    configurations.getByName("releaseCompileClasspath").getResolvedConfiguration().getFirstLevelModuleDependencies().each {
+                        def dependency = dependencies.appendNode('dependency')
+                        dependency.appendNode('groupId', it.moduleGroup)
+                        dependency.appendNode('artifactId', it.moduleName)
+                        dependency.appendNode('version', it.moduleVersion)
+                    }
+                }
+            }
+        }
+    }
 }
