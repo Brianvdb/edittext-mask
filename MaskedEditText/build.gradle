@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 
-group='com.github.Brianvdb'
+group='nl.bravobit.ui'
 
 String projectVersion = "1.0.6"
 
@@ -22,21 +22,8 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0-alpha04'
 }
 
-task sourcesJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
-}
-
-task javadoc(type: Javadoc) {
-    source = android.sourceSets.main.java.srcDirs
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-}
-
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    from javadoc.destinationDir
-}
-artifacts {
-    archives javadocJar
-    archives sourcesJar
+tasks.withType(Javadoc).all {
+    enabled = false
 }
 
 apply plugin: 'com.github.dcendents.android-maven'
@@ -74,7 +61,7 @@ install {
                 }
                 pom.withXml {
                     def dependencies = asNode().appendNode('dependencies')
-                    configurations.getByName("releaseCompileClasspath").getResolvedConfiguration().getFirstLevelModuleDependencies().each {
+                    configurations.runtime.getResolvedConfiguration().getFirstLevelModuleDependencies().each {
                         def dependency = dependencies.appendNode('dependency')
                         dependency.appendNode('groupId', it.moduleGroup)
                         dependency.appendNode('artifactId', it.moduleName)

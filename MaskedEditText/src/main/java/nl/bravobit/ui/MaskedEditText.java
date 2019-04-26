@@ -16,7 +16,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.widget.AppCompatEditText;
 
-import br.com.sapereaude.maskedEditText.R;
 
 import static android.content.ContentValues.TAG;
 
