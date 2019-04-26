@@ -1,4 +1,4 @@
-package br.com.sapereaude.maskedEditText;
+package nl.bravobit.ui;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -15,6 +15,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.AppCompatEditText;
+
+import br.com.sapereaude.maskedEditText.R;
 
 import static android.content.ContentValues.TAG;
 

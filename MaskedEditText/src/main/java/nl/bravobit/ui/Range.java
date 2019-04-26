@@ -1,4 +1,4 @@
-package br.com.sapereaude.maskedEditText;
+package nl.bravobit.ui;
 
 public class Range {
 	private int start;

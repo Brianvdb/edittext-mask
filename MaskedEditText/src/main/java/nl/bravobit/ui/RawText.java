@@ -1,4 +1,4 @@
-package br.com.sapereaude.maskedEditText;
+package nl.bravobit.ui;
 
 /**
  * Raw text, another words TextWithout mask characters
